@@ -19,7 +19,7 @@ public abstract class Entity {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}
