@@ -21,8 +21,8 @@ public class main {
 		telefono.setOperador("Claro");
 
 		Telefono telefono3 = new Telefono();
-		telefono3.setNumero(1154737572);
-		telefono3.setOperador("Claro");
+		telefono3.setNumero(1137572);
+		telefono3.setOperador("Clardsfso");
 
 		session.save(telefono);
 		session.save(telefono3);
@@ -46,7 +46,5 @@ public class main {
 
 		transaction.commit();
 		session.close();
-
 	}
-
 }

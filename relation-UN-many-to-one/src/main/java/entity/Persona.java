@@ -2,11 +2,12 @@ package entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Persona implements Serializable {
@@ -15,7 +16,8 @@ public class Persona implements Serializable {
 	private Long id;
 	private String lastName;
 	private String dni;
-	private Telefono telefono;
+	private String name;
+	private Casa casa;
 
 	public Persona() {
 	}
@@ -45,30 +47,35 @@ public class Persona implements Serializable {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	@OneToOne(fetch=FetchType.LAZY,orphanRemoval=true)
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	/**
-	 * Clase A contiene a Clase B
-	 * @OneToOne: con este tag indicamos que la relacion es uno a uno
+	 * @ManyToOne: este tag se utiliza para indicar que la relacion va a ser many-to-one con la entidad casa
 	 * 		fetch: indica si va a traer el objeto asociado ya instanciado(EAGER) o si solo traera el id(LAZY), por defecto es EAGER 
-	 * 		cascade: es para indicarle que operaciones realiza en cascada
+	 *		cascade: es para indicarle que operaciones realiza en cascada
 	 * 				CascadeType.ALL: son todas las operaciones, es la que esta por defecto.
 	 * 				CascadeType.DETACH: realiza la separacion de los objetos en cascada
 	 * 				CascadeType.MERGE: realiza el merge en cascada
 	 * 				CascadeType.PERSIST: realiza los insert de los objetos en cascada. o sea si guardo A se guarda B
 	 * 				CascadeType.REFRESH: realiza la actualizacion en cascada
 	 * 				CascadeType.REMOVE: realiza el delete en cascada
-	 * 		mappedBy: es para indicarle el nombre de la variable en mi clase A que representa a B, solo se utiliza en la relacion bidireccional. 
-	 *		optional: true/false indican si el atributo es opcional/requerido
-	 *		orphanRemoval: true/false Es para indicarle que si se elimina el objeto asociado(B) o no, por defecto es false. Lo que quiere decir es 
-	 *					   que si yo elimino A tengo no elimina B.
-	 *		targetEntity: describe la entidad de destino
+	 * 		optional: <code>true false</code> si el atributo es opcional o no
+	 * 		targetEntity: describe la entidad de destino, se utiliza en la relacion bidireccional
 	 */
-	public Telefono getTelefono() {
-		return telefono;
+	public Casa getCasa() {
+		return casa;
 	}
 
-	public void setTelefono(Telefono telefono) {
-		this.telefono = telefono;
+	public void setCasa(Casa casa) {
+		this.casa = casa;
 	}
 
 }

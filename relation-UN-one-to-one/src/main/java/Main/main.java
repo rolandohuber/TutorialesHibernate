@@ -4,9 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import util.HibernateSessionFactory;
 import entity.Persona;
 import entity.Telefono;
-import util.HibernateSessionFactory;
 
 public class main {
 
@@ -28,12 +28,12 @@ public class main {
 		persona.setTelefono(telefono);
 		
 		session.save(persona);
-
-		Persona pepe= (Persona) session.load(Persona.class, 1L);
+		
+		Persona pepe= (Persona) session.load(Persona.class, 5L);
 		System.out.println("NOMBRE :: "+pepe.getLastName());
 		
 		System.out.println("TELEFONO ::: "+pepe.getTelefono().getNumero());
-		session.delete(pepe);
+		//session.delete(pepe);
 		transaction.commit();
 		session.close();
 
