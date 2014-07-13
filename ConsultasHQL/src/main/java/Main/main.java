@@ -21,8 +21,8 @@ public class main {
 		SessionFactory sessionFactory = HibernateSessionFactory.getSessionfactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-	/*
-	 * {
+/*
+	  {
 		Transaction transaction2 = session.beginTransaction();
 		for(int i=0;i<5;++i){
 			Direccion direccion= new Direccion();
