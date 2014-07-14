@@ -39,6 +39,23 @@ public class Curso {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Estudiante.class,mappedBy="cursos")
+	/**
+	 * @ManyToMany: con este tag le indicamos a hibernate que la relacion va a ser muchos a muchos, por defecto genera dos tablas de relaciones,una
+	 * 				 viendola desde estudiante y la otra viendola desde curso
+	 * 		fetch: indica si va a traer el objeto asociado ya instanciado(EAGER) o si solo traera el id(LAZY), por defecto es EAGER 
+	 * 		cascade: es para indicarle que operaciones realiza en cascada
+	 * 				CascadeType.ALL: son todas las operaciones, es la que esta por defecto.
+	 * 				CascadeType.DETACH: realiza la separacion de los objetos en cascada
+	 * 				CascadeType.MERGE: realiza el merge en cascada
+	 * 				CascadeType.PERSIST: realiza los insert de los objetos en cascada. o sea si guardo A se guarda B
+	 * 				CascadeType.REFRESH: realiza la actualizacion en cascada
+	 * 				CascadeType.REMOVE: realiza el delete en cascada
+	 * 		mappedBy: es para indicarle el nombre de la variable en mi clase B que representa a A, solo se utiliza
+	 * 				  en la relacion bidireccional,se pone el la relacion mas debil, en este caso se opto por Curso con lo cual debo indicarle el nombre de 
+	 * 					mi lista de cursos en mi clase estudiante.
+	 * 		targetEntity: es para indicarle la entidad de destino.
+	 * 
+	 */
 	public Set<Estudiante> getEstudiantes() {
 		return estudiantes;
 	}
