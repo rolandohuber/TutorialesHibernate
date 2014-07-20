@@ -30,6 +30,7 @@ public class Principal {
 
 			Cliente cliente = new Cliente();
 			cliente.setNombre("Ju");
+			cliente.setSaldo(100D);
 			cliente.setApellido("dc");
 			cliente.setCuit("0-0-0");
 			cliente.setFechaAlta(new Date());

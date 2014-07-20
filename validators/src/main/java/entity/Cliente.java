@@ -8,13 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 import anotations.ValidaUsuario;
 
@@ -98,6 +105,15 @@ public class Cliente {
 	}
 
 	@NotNull
+	@Future
+	/**
+	 * @Future: Valida que el atributo sea una fecha en el futuro. Soporta java.util.Date
+	 * y java.util.Calendar.
+	 */
+	/**
+	 * @Past: Valida que el atributo sea una fecha en el pasado. Soporta java.util.Date y 
+	 * java.util.Calendar.
+	 */
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
@@ -106,6 +122,35 @@ public class Cliente {
 		this.fechaAlta = fechaAlta;
 	}
 
+	@DecimalMax(inclusive = true, value = "1000")
+	// @DecimalMin(inclusive=true,value="1000")
+	/**
+	 * 	@DecimalMin o @DecimalMax: Valida que el atributo sea un número menor o igual al valor pasado como
+	 * parámetro para construir la anotación. Soporta java.math.BigDecimal,
+	 * java.math.BigInteger, java.lang.String, int, long, byte y short y sus
+	 * respectivos wrappers.
+	 * 		groups:
+	 *		message: en este atributo le indicamos el mensaje que queremos que devuelva
+	 *		payload:
+	 *		inclusive: true/false si incluye o no este valor como valido
+	 *		value: es el valor contra el cual validara
+	 * 
+	 */
+	@Digits(fraction = 10, integer = 10)
+	/**
+	 * Valida la precisión del atributo numérico, tanto la parte entera como la
+	 * fraccional. 
+	 * Soporta java.math.BigDecimal, java.math.BigInteger,java.lang.String, 
+	 * así como los primitivos int, long, byte y short y sus respectivos wrappers.
+	 */
+	@Range(max = 1000, min = 0)
+	/**
+	 * Valida que el atributo sea un número que se encuentre entre el rango de
+	 * los valores min y max (incluidos los límites) pasados como parámetro para
+	 * construir la anotación. 
+	 * Soporta java.math.BigDecimal,java.math.BigInteger, java.lang.String, int, 
+	 * long, byte y short y sus respectivos wrappers.
+	 */
 	public Double getSaldo() {
 		return saldo;
 	}
@@ -117,6 +162,12 @@ public class Cliente {
 	@AssertTrue
 	/**
 	 * 	@AssertTrue: con este tag le decimos que no aceptara otro valor que no sea true	
+	 * 		groups:
+	 *		message: en este atributo le indicamos el mensaje que queremos que devuelva
+	 *		payload:
+	 */
+	/**
+	 * @AssertFalse: con este tag le decimos que no aceptara otro valor que no sea false	
 	 * 		groups:
 	 *		message: en este atributo le indicamos el mensaje que queremos que devuelva
 	 *		payload:
@@ -138,6 +189,12 @@ public class Cliente {
 	 *		payload:
 	 *		flags:
 	 *		regexp: en este atributo le configuramos la exprecion regular para que valide el Email
+	 */
+	@Size(max = 255, min = 0)
+	/**
+	 * Valida que el tamaño del atributo se encuentre entre el rango de los
+	 * valores min y max, pasados como parámetros para construir la anotación.
+	 * Soporta java.lang.String.
 	 */
 	public String getEmail() {
 		return email;
@@ -171,6 +228,9 @@ public class Cliente {
 	 * @ValidaUsuario: es una anotacion que cree,esto significa que podemos crear nuestras anotaciones
 	 * propias para realizar validaciones. Esta anotacion esta en el paquete anotations.
 	 * 
+	 */
+	/**
+	 * @Null: Valida que el atributo sea igual a null.
 	 */
 	public String getNombreUsuario() {
 		return nombreUsuario;
