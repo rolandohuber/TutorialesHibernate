@@ -3,18 +3,29 @@ package entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-public class Persona extends entity.Entity implements Serializable {
+public class Persona implements Serializable {
 	private static final long serialVersionUID = -3481041518539559833L;
 
+	private Long id;
 	private String lastName;
 	private String dni;
 	private Integer telefone;
 
 	public Persona() {
+	}
+
+	@Id
+	@GeneratedValue
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getLastName() {
