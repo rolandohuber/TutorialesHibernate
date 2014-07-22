@@ -3,12 +3,8 @@ package main;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
-import repository.EntityRepository;
-import util.HibernateSessionFactory;
+import repository.EmpleadoRepository;
+import repository.PersonaRepository;
 import entity.Empleado;
 import entity.Persona;
 
@@ -16,8 +12,8 @@ public class main {
 
 	public static void main(String[] args) {
 
-		EntityRepository<Persona> personaRepository = new EntityRepository<Persona>(Persona.class);
-		EntityRepository<Empleado> empleadoRepository = new EntityRepository<Empleado>(Empleado.class);
+		PersonaRepository personaRepository = new PersonaRepository();
+		EmpleadoRepository empleadoRepository = new EmpleadoRepository();
 
 		{
 			System.out.println("\n\n ::::::::::::::: Save :::::::::::::::");

@@ -11,16 +11,17 @@ import org.hibernate.Transaction;
 
 import util.HibernateSessionFactory;
 
-public class EntityRepository<T extends Serializable> {
+public abstract class EntityRepository<T extends Serializable> {
 
 	private SessionFactory sessionFactory;
 	/**
-	 * En esta clase creamos todos los metodos que son genericos para todos los objetos que se persisten.
-	 * En el caso de que necesitemos implementar algun metodo en particular lo que podemos hacer es extender de esta clase
-	 * e implementar los metodos que deseemos.
+	 * En esta clase creamos todos los metodos que son genericos para todos los
+	 * objetos que se persisten. Utilizaremos esta clase como base para todos los repositorios. en el caso que necesitemos algun metodo 
+	 * en particular para algun objeto lo que aremos es crearla en el repositorio del objeto(sin modificar el generico).
 	 * 
-	 * Para hacer la clase generica debemos utilizar generics e indicarle el tipo de clase que es al momento de instanciarla,
-	 * como se ve en la clase main.
+	 * Para hacer la clase generica debemos utilizar generics e indicarle el
+	 * tipo de clase que es al momento de instanciarla, como se ve en la clase
+	 * main.
 	 */
 
 	private Class<?> genericClass;
