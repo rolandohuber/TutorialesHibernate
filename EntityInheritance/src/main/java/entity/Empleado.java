@@ -3,8 +3,6 @@ package entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 @Entity
 public class Empleado extends Persona implements Serializable {

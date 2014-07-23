@@ -8,6 +8,17 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+/**
+ * Existen tres maneras de persistir una herencia en hibernate
+ * 
+ *	Utilizando una sola tabla donde se mapearan todos los objetos y se utilizara un campo mas para diferenciar
+ * los objetos(discriminador)
+ *  
+ *  Utilizando una tabla para el objeto padre y una tabla mas por cada hijo, lo cual hara un join entre las tablas para recuperar el objeto
+ *  
+ *  y la ultima utilizando una tabla por cada clase
+ * 
+ */
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
