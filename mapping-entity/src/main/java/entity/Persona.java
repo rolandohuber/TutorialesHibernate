@@ -9,7 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -192,21 +191,20 @@ public class Persona implements Serializable {
 	}
 
 	public enum Example {
-		ONE(1,"ONE"),
-		TWO(2,"TWO");
+		ONE(1, "ONE"), TWO(2, "TWO");
 		private int value;
 		private String name;
 
-		private Example(int value,String name) {
+		private Example(int value, String name) {
 			this.value = value;
-			this.name=name;
+			this.name = name;
 		}
 
 		public int getValue() {
 			return value;
 		}
-		
-		public String getName(){
+
+		public String getName() {
 			return this.name;
 		}
 	}
