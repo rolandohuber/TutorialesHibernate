@@ -19,33 +19,33 @@ public class main {
 		Transaction transaction = session.beginTransaction();
 
 		Casa casa=new Casa();
-		casa.setCalle("PEPE");
+		casa.setCalle("Calle 1 ");
 		casa.setAltura(1270);
 		session.save(casa);
 		
-		Persona pe= new Persona();
-		pe.setName("Rolando");
-		pe.setCasa(casa);
-		session.save(pe);
+		Persona persona1= new Persona();
+		persona1.setNombre("Persona 1");
+		persona1.setCasa(casa);
+		session.save(persona1);
 		
-		Persona pee= new Persona();
-		pee.setName("Rolansdaddo");
-		pee.setCasa(casa);
-		session.save(pee);
+		Persona persona2= new Persona();
+		persona2.setNombre("Persona 2");
+		persona2.setCasa(casa);
+		session.save(persona2);
 		
-		casa.addPersona(pee);
-		casa.addPersona(pe);
+		casa.addPersona(persona2);
+		casa.addPersona(persona1);
 		
-		Persona pepe= (Persona) session.load(Persona.class, 1L);
-		pepe.setName("Rolando");
-		session.update(pepe);
+		Persona persona1GET= (Persona) session.load(Persona.class, 1L);
+		persona1GET.setNombre("Rolando");
+		session.update(persona1GET);
 
 		Casa casa2= (Casa)session.load(Casa.class, 1l);
 		Iterator<Persona> it=casa2.getPersonas().iterator();
 		System.out.println("Personas de la casa : Direccion "+casa2.getCalle()+" Altura : "+casa2.getAltura());
 		while (it.hasNext()) {
 			Persona persona = (Persona) it.next();
-			System.out.println("\n     Persona Name : "+persona.getName());
+			System.out.println("\n     Persona Nombre : "+persona.getNombre());
 		}
 		transaction.commit();
 		session.close();

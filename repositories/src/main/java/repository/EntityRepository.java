@@ -16,8 +16,10 @@ public abstract class EntityRepository<T extends Serializable> {
 	private SessionFactory sessionFactory;
 	/**
 	 * En esta clase creamos todos los metodos que son genericos para todos los
-	 * objetos que se persisten. Utilizaremos esta clase como base para todos los repositorios. en el caso que necesitemos algun metodo 
-	 * en particular para algun objeto lo que aremos es crearla en el repositorio del objeto(sin modificar el generico).
+	 * objetos que se persisten. Utilizaremos esta clase como base para todos
+	 * los repositorios. en el caso que necesitemos algun metodo en particular
+	 * para algun objeto lo que aremos es crearla en el repositorio del
+	 * objeto(sin modificar el generico).
 	 * 
 	 * Para hacer la clase generica debemos utilizar generics e indicarle el
 	 * tipo de clase que es al momento de instanciarla, como se ve en la clase

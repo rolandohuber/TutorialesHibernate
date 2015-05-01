@@ -18,29 +18,25 @@ public class Main {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		
 		/**
 		 * sentencia sql para crear la tabla
 		 * 
-		 *		drop database `test`;
-				create database `test`;
-				CREATE TABLE `test`.`persona` (
-  				`id_persona` INT NOT NULL AUTO_INCREMENT,
-  				`nombre_persona` VARCHAR(45) NULL,
-  				`apellido_persona` VARCHAR(45) NULL,
-  				PRIMARY KEY (`id_persona`),
-  				UNIQUE INDEX `id_persona_UNIQUE` (`id_persona` ASC));
+		 * drop database `test`; create database `test`; CREATE TABLE
+		 * `test`.`persona` ( `id_persona` INT NOT NULL AUTO_INCREMENT,
+		 * `nombre_persona` VARCHAR(45) NULL, `apellido_persona` VARCHAR(45)
+		 * NULL, PRIMARY KEY (`id_persona`), UNIQUE INDEX `id_persona_UNIQUE`
+		 * (`id_persona` ASC));
 		 */
-		
-		
+
 		/**
 		 * ejecutar sql comun y mapearlo a una clase
 		 * 
-		 * Para consultar un Sp seria de la misma forma, se crea la sentencia sql con la que se ejecutaria y se crea
-		 * una clase con todos los datos que trae el resultset
+		 * Para consultar un Sp seria de la misma forma, se crea la sentencia
+		 * sql con la que se ejecutaria y se crea una clase con todos los datos
+		 * que trae el resultset
 		 * 
-		 * Teniendo en cuenta que los nombres de las columnas deben ser exactamente los nombres de
-		 * los atributos de la clase que creo
+		 * Teniendo en cuenta que los nombres de las columnas deben ser
+		 * exactamente los nombres de los atributos de la clase que creo
 		 * 
 		 */
 

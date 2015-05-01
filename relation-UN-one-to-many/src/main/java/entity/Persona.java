@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,8 +18,8 @@ public class Persona implements Serializable {
 	public static final String TELEFONO_ATTRIBUTE = "telefonos";
 
 	private Long id;
-	private String lastName;
-	private String dni;
+	private String nombre;
+	private String documento;
 	private List<Telefono> telefonos;
 
 	public Persona() {
@@ -42,20 +43,20 @@ public class Persona implements Serializable {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public void addTelefono(Telefono telefono) {
@@ -91,13 +92,17 @@ public class Persona implements Serializable {
 	 * 		uniqueConstraints: se utiliza para agregar restricciones a la hora de insertar un nuevo registro en una tabla,recibe un array de @UniqueConstraint
 	 * 		joinColumns: se utiliza para indicarle el nombre de las columnas que quiero que tenga la tabla,recibe un array de @JoinColumn 
 	 */
-	/*@ JoinTable (name = "relation" , joinColumns = {
-	        @ JoinColumn (name = "personID")}, inverseJoinColumns = {
-	        @ JoinColumn (name = "telefonoID" )})*/
+	/*
+	 * @ JoinTable (name = "relation" , joinColumns = {
+	 * 
+	 * @ JoinColumn (name = "personID")}, inverseJoinColumns = {
+	 * 
+	 * @ JoinColumn (name = "telefonoID" )})
+	 */
 	/**
 	 * para solucionar eso y que no genere una tabla adicional se utiliza el tag @JoinColumn
 	 * */
-	//@JoinColumn(name="id_persona")
+	// @JoinColumn(name="id_persona")
 	/**
 	 *@JoinColumn: con este tag le indicamos que agregue una columna para hacer el join con otra tabla, con esto
 	 *				logro que no me genere una tabla intermedia entre la asociacion de dos objetos en la relacion oneToMany.
@@ -116,6 +121,7 @@ public class Persona implements Serializable {
 	public List<Telefono> getTelefonos() {
 		return telefonos;
 	}
+
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}

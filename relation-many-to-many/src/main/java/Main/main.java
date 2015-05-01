@@ -4,9 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import util.HibernateSessionFactory;
 import entity.Curso;
 import entity.Estudiante;
-import util.HibernateSessionFactory;
 
 public class main {
 
@@ -16,32 +16,36 @@ public class main {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Estudiante estudiante = new Estudiante();
-		estudiante.setName("Rolando");
-		session.save(estudiante);
+		Estudiante estudiante1 = new Estudiante();
+		estudiante1.setName("Estudiante 1");
+		session.save(estudiante1);
 
 		Estudiante estudiante2 = new Estudiante();
-		estudiante2.setName("Rolando2");
+		estudiante2.setName("Estudiante 2");
 		session.save(estudiante2);
 
 		Curso curso = new Curso();
 		curso.setNombre("Programacion I");
 		session.save(curso);
 
-		curso.addEstudiante(estudiante);
+		curso.addEstudiante(estudiante1);
 		curso.addEstudiante(estudiante2);
 
 		session.update(curso);
 
-		estudiante.addCurso(curso);
+		estudiante1.addCurso(curso);
 		estudiante2.addCurso(curso);
 
-		session.update(estudiante);
+		session.update(estudiante1);
 		session.update(estudiante2);
 
 		Curso curso2 = new Curso();
-		curso2.setNombre("Programacion I");
+		curso2.setNombre("Programacion II");
+		curso2.addEstudiante(estudiante1);
 		session.save(curso2);
+
+		estudiante1.addCurso(curso2);
+		session.update(estudiante1);
 
 		transaction.commit();
 		session.close();

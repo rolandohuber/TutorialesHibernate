@@ -25,8 +25,8 @@ public class main {
 		session.save(telefono);
 
 		Persona persona = new Persona();
-		persona.setDni("315165161");
-		persona.setLastName("huber");
+		persona.setDocumento("315165161");
+		persona.setNombre("huber");
 		persona.setTelefono(telefono);
 
 		telefono.setPersona(persona);
@@ -35,12 +35,12 @@ public class main {
 		session.update(telefono);
 
 		Persona persona2 = (Persona) session.load(Persona.class, 1L);
-		System.out.println("NOMBRE :: " + persona2.getLastName());
+		System.out.println("NOMBRE :: " + persona2.getNombre());
 
 		System.out.println("TELEFONO ::: " + persona2.getTelefono().getNumero());
 
 		Telefono telefono2 = (Telefono) session.load(Telefono.class, 1L);
-		System.out.println("PROPIETARIO TELEFONO ::: " + telefono2.getPersona().getLastName());
+		System.out.println("PROPIETARIO TELEFONO ::: " + telefono2.getPersona().getNombre());
 
 		transaction.commit();
 		session.close();

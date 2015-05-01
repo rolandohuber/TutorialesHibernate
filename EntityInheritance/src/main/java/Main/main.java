@@ -16,20 +16,21 @@ public class main {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Persona pe= new Persona();
-		pe.setName("Rolando");
-		session.save(pe);
-		Persona pepe= (Persona) session.load(Persona.class, 1L);
-		pepe.setName("Rolando");
-		session.update(pepe);
+		Persona persona1 = new Persona();
+		persona1.setNombre("Rolando");
+		session.save(persona1);
 		
-		Empleado empleado=new Empleado();
-		empleado.setCargo("Gerente");
-		empleado.setName("Juan");
-		empleado.setTelefone(1154737572);
-		
-		session.save(empleado);
-		
+		Persona persona2 = (Persona) session.load(Persona.class, 1L);
+		persona2.setNombre("Rolando Huber");
+		session.update(persona2);
+
+		Empleado empleado1 = new Empleado();
+		empleado1.setCargo("Gerente");
+		empleado1.setNombre("Juan");
+		empleado1.setTelefono(1154737572);
+
+		session.save(empleado1);
+
 		transaction.commit();
 		session.close();
 

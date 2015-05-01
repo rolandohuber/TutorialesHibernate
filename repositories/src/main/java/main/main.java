@@ -18,7 +18,7 @@ public class main {
 		{
 			System.out.println("\n\n ::::::::::::::: Save :::::::::::::::");
 			Persona persona = new Persona();
-			persona.setLastName("lastName");
+			persona.setApellido("lastName");
 			personaRepository.save(persona);
 			System.out.println("\n\n ::::::::::::::: Fin Save :::::::::::::::");
 		}
@@ -26,7 +26,7 @@ public class main {
 		{
 			System.out.println("\n\n ::::::::::::::: Update :::::::::::::::");
 			Persona persona = personaRepository.get(1L);
-			persona.setDni("2222");
+			persona.setDocumento("2222");
 			personaRepository.update(persona);
 			System.out.println("\n\n ::::::::::::::: FIN Update :::::::::::::::");
 		}
@@ -34,7 +34,7 @@ public class main {
 		{
 			System.out.println("\n\n ::::::::::::::: Merge :::::::::::::::");
 			Persona persona = personaRepository.get(1L);
-			persona.setTelefone(37572);
+			persona.setTelefono(37572);
 			personaRepository.merge(persona);
 			System.out.println("\n\n ::::::::::::::: Fin Merge :::::::::::::::");
 		}

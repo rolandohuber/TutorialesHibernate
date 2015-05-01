@@ -19,8 +19,8 @@ import javax.persistence.MappedSuperclass;
  *  y la ultima utilizando una tabla por cada clase
  * 
  */
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@Inheritance(strategy = InheritanceType.JOINED)
+// @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+// @Inheritance(strategy = InheritanceType.JOINED)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 /**
  * @MappedSuperclass : se le indica a hibernate que esta clase SOLO se utilizara para heredar de ella, lo cual significa
@@ -29,13 +29,13 @@ import javax.persistence.MappedSuperclass;
 public abstract class Entity {
 
 	private Long id;
-	private String name;
+	private String nombre;
 
 	public Entity() {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	public Long getId() {
 		return id;
 	}
@@ -44,12 +44,12 @@ public abstract class Entity {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

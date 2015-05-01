@@ -23,14 +23,14 @@ public class main {
 		session.save(telefono);
 		
 		Persona persona = new Persona();
-		persona.setDni("315165161");
-		persona.setLastName("huber");
+		persona.setDocumento("315165161");
+		persona.setNombre("huber");
 		persona.setTelefono(telefono);
 		
 		session.save(persona);
 		
-		Persona pepe= (Persona) session.load(Persona.class, 5L);
-		System.out.println("NOMBRE :: "+pepe.getLastName());
+		Persona pepe= (Persona) session.load(Persona.class, 1L);
+		System.out.println("NOMBRE :: "+pepe.getNombre());
 		
 		System.out.println("TELEFONO ::: "+pepe.getTelefono().getNumero());
 		//session.delete(pepe);

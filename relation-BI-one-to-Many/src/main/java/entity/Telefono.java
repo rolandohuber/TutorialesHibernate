@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -46,7 +44,7 @@ public class Telefono {
 		this.operador = operador;
 	}
 
-	@ManyToOne(targetEntity = Persona.class, fetch = FetchType.LAZY,cascade=CascadeType.DETACH)
+	@ManyToOne(targetEntity = Persona.class, fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	/**
 	 * @ManyToOne: con este tag indicamos que la relacion es muchos a uno
 	 * 		fetch: indica si va a traer el objeto asociado ya instanciado(EAGER) o si solo traera el id(LAZY), por defecto es EAGER 
@@ -72,10 +70,14 @@ public class Telefono {
 	 * 		uniqueConstraints: se utiliza para agregar restricciones a la hora de insertar un nuevo registro en una tabla,recibe un array de @UniqueConstraint
 	 * 		joinColumns: se utiliza para indicarle el nombre de las columnas que quiero que tenga la tabla,recibe un array de @JoinColumn 
 	 */
-	/*@ JoinTable (name = "relation" , joinColumns = {
-	        @ JoinColumn (name = "personID")}, inverseJoinColumns = {
-	        @ JoinColumn (name = "telefonoID" )})*/
-	//@JoinColumn(name = "id_de_persona")
+	/*
+	 * @ JoinTable (name = "relation" , joinColumns = {
+	 * 
+	 * @ JoinColumn (name = "personID")}, inverseJoinColumns = {
+	 * 
+	 * @ JoinColumn (name = "telefonoID" )})
+	 */
+	// @JoinColumn(name = "id_de_persona")
 	/**
 	 *@JoinColumn: con este tag le indicamos que agregue una columna para hacer el join con otra tabla, con esto
 	 *				logro que no me genere una tabla intermedia entre la asociacion de dos objetos en la relacion oneToMany.

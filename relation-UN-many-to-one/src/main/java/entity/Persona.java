@@ -14,9 +14,9 @@ public class Persona implements Serializable {
 	private static final long serialVersionUID = -3481041518539559833L;
 
 	private Long id;
-	private String lastName;
-	private String dni;
-	private String name;
+	private String nombre;
+	private String documento;
+	private String apellido;
 	private Casa casa;
 
 	public Persona() {
@@ -32,28 +32,28 @@ public class Persona implements Serializable {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
-	public String getName() {
-		return name;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

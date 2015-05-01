@@ -22,7 +22,7 @@ import javax.persistence.Version;
  * @Entity con este tag le indico a hibernate que es una clase que se puede guardar
  * 		name:(opcional) es el nombre que le quiero dar a la entidad, por defecto es el nombre de la clase.
  */
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "nombre", "dni" }) })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "nombre", "documento" }) })
 /**
  * 
  * @Table: (opcional) Con este tag le puedo indicar a hibernate configuraciones de la tabla
@@ -40,12 +40,12 @@ public class Persona implements Serializable {
 	private static final long serialVersionUID = -3481041518539559833L;
 
 	private Long id;
-	private String name;
-	private String dni;
-	private Integer telefone;
+	private String nombre;
+	private String documento;
+	private Integer telefono;
 	private Long version;
 	private String transientValue;
-	private java.util.Date fecha_nacim;
+	private java.util.Date fechaNacimiento;
 	private int edad;
 	private Example example;
 
@@ -97,28 +97,28 @@ public class Persona implements Serializable {
 	 *		precision (opcional): es la precicion decimal de la columna (por defecto es 0)
 	 *		scale (opcional): indica la escala decimal de la columna (por defecto es 0)
 	 */
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
-	public Integer getTelefone() {
-		return telefone;
+	public Integer getTelefono() {
+		return telefono;
 	}
 
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
 	}
 
 	@Version
@@ -168,12 +168,12 @@ public class Persona implements Serializable {
 	 * 			TemporalType.TIME: guarda hora minutos y segundos
 	 * 			TemporalType.DATE: guarda sia mes año
 	 */
-	public java.util.Date getFecha_nacim() {
-		return fecha_nacim;
+	public java.util.Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacim(java.util.Date fecha_nacim) {
-		this.fecha_nacim = fecha_nacim;
+	public void setFechaNacimiento(java.util.Date fecha_nacim) {
+		this.fechaNacimiento = fecha_nacim;
 	}
 
 	@Enumerated(EnumType.STRING)

@@ -13,12 +13,20 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Persona {
+
+	public static final String ID_ATTRIBUTE = "id";
+	public static final String NOMBRE_ATTRIBUTE = "nombre";
+	public static final String SUELDO_ATTRIBUTE = "sueldo";
+	public static final String DIRECCION_ATTRIBUTE = "direccion";
+	public static final String TELEFONOS_ATTRIBUTE = "telefonos";
+	public static final String AUTOS_ATTRIBUTE = "autos";
+
 	private Long id;
-	private String name;
+	private String nombre;
 	private Long sueldo;
 	private Direccion direccion;
-	private List<Telefono> telefonos= new ArrayList<Telefono>();
-	private List<Auto> autos= new ArrayList<Auto>();
+	private List<Telefono> telefonos = new ArrayList<Telefono>();
+	private List<Auto> autos = new ArrayList<Auto>();
 
 	@Id
 	@GeneratedValue
@@ -31,11 +39,11 @@ public class Persona {
 	}
 
 	public String getName() {
-		return name;
+		return nombre;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.nombre = name;
 	}
 
 	public Long getSueldo() {
@@ -45,18 +53,18 @@ public class Persona {
 	public void setSueldo(Long sueldo) {
 		this.sueldo = sueldo;
 	}
-	
+
 	@ManyToOne
 	public Direccion getDireccion() {
 		return direccion;
 	}
-	
+
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 
 	@OneToMany
-	@JoinColumn(name="id_persona")
+	@JoinColumn(name = "id_persona")
 	public List<Telefono> getTelefonos() {
 		return telefonos;
 	}
@@ -64,7 +72,7 @@ public class Persona {
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}
-	
+
 	@ManyToMany
 	public List<Auto> getAutos() {
 		return autos;

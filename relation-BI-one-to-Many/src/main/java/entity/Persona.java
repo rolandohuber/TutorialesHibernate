@@ -3,15 +3,12 @@ package entity;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Persona implements Serializable {
@@ -20,8 +17,8 @@ public class Persona implements Serializable {
 	public static final String TELEFONO_ATTRIBUTE = "telefonos";
 
 	private Long id;
-	private String lastName;
-	private String dni;
+	private String nombre;
+	private String documento;
 	private List<Telefono> telefonos;
 
 	public Persona() {
@@ -45,27 +42,27 @@ public class Persona implements Serializable {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public void addTelefono(Telefono telefono) {
 		this.telefonos.add(telefono);
 	}
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy=Telefono.PERSONA_ATTRIBUTE)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Telefono.PERSONA_ATTRIBUTE)
 	/**
 	 * Clase A contiene a Clase B
 	 * @OneToMany: con este tag indicamos que la relacion es uno a muchos

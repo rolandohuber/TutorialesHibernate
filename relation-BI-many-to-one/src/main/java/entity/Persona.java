@@ -7,18 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Persona implements Serializable {
 	private static final long serialVersionUID = -3481041518539559833L;
 
+	public static final String CASA_ATTRIBUTE = "casa";
+
 	private Long id;
-	private String lastName;
-	private String dni;
-	private String name;
+	private String apellido;
+	private String documento;
+	private String nombre;
 	private Casa casa;
 
 	public Persona() {
@@ -34,28 +34,28 @@ public class Persona implements Serializable {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -86,10 +86,14 @@ public class Persona implements Serializable {
 	 * 		uniqueConstraints: se utiliza para agregar restricciones a la hora de insertar un nuevo registro en una tabla,recibe un array de @UniqueConstraint
 	 * 		joinColumns: se utiliza para indicarle el nombre de las columnas que quiero que tenga la tabla,recibe un array de @JoinColumn 
 	 */
-	/*@ JoinTable (name = "relation" , joinColumns = {
-	        @ JoinColumn (name = "personID")}, inverseJoinColumns = {
-	        @ JoinColumn (name = "telefonoID" )})*/
-	//@JoinColumn(name = "id_de_casa")
+	/*
+	 * @ JoinTable (name = "relation" , joinColumns = {
+	 * 
+	 * @ JoinColumn (name = "personID")}, inverseJoinColumns = {
+	 * 
+	 * @ JoinColumn (name = "telefonoID" )})
+	 */
+	// @JoinColumn(name = "id_de_casa")
 	/**
 	 *@JoinColumn: con este tag le indicamos que agregue una columna para hacer el join con otra tabla, con esto
 	 *				logro que no me genere una tabla intermedia entre la asociacion de dos objetos en la relacion ManyToOne, aunque por defecto en la relacion manyToOne me lo genere solo

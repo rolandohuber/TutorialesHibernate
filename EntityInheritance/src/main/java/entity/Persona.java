@@ -8,35 +8,35 @@ import javax.persistence.Entity;
 public class Persona extends entity.Entity implements Serializable {
 	private static final long serialVersionUID = -3481041518539559833L;
 
-	private String lastName;
-	private String dni;
-	private Integer telefone;
+	private String apellido;
+	private String documento;
+	private Integer telefono;
 
 	public Persona() {
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
-	public Integer getTelefone() {
-		return telefone;
+	public Integer getTelefono() {
+		return telefono;
 	}
 
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
 	}
 
 }

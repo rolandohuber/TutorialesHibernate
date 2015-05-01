@@ -4,9 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import util.HibernateSessionFactory;
 import entity.Persona;
 import entity.Telefono;
-import util.HibernateSessionFactory;
 
 public class main {
 
@@ -16,33 +16,33 @@ public class main {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Telefono telefono = new Telefono();
-		telefono.setNumero(1154737572);
-		telefono.setOperador("Claro");
+		Telefono telefono1 = new Telefono();
+		telefono1.setNumero(1154737572);
+		telefono1.setOperador("Claro");
 
-		Telefono telefono3 = new Telefono();
-		telefono3.setNumero(1137572);
-		telefono3.setOperador("Clardsfso");
+		Telefono telefono2 = new Telefono();
+		telefono2.setNumero(1137572);
+		telefono2.setOperador("Clardsfso");
 
-		session.save(telefono);
-		session.save(telefono3);
+		session.save(telefono1);
+		session.save(telefono2);
 
 		Persona persona = new Persona();
-		persona.setDni("315165161");
-		persona.setLastName("huber");
-		persona.addTelefono(telefono);
-		persona.addTelefono(telefono3);
+		persona.setDocumento("315165161");
+		persona.setNombre("huber");
+		persona.addTelefono(telefono1);
+		persona.addTelefono(telefono2);
 
 		session.save(persona);
 
-		telefono.setPersona(persona);
-		telefono3.setPersona(persona);
-		session.update(telefono);
-		session.update(telefono3);
+		telefono1.setPersona(persona);
+		telefono2.setPersona(persona);
+		session.update(telefono1);
+		session.update(telefono2);
 
-		Telefono telefono2 = (Telefono) session.load(Telefono.class, 1L);
+		Telefono telefonoGet = (Telefono) session.load(Telefono.class, 1L);
 
-		System.out.println("Persona :::: " + telefono2.getPersona().getLastName());
+		System.out.println("Persona :::: " + telefonoGet.getPersona().getNombre());
 
 		transaction.commit();
 		session.close();

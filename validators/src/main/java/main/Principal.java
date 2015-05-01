@@ -23,18 +23,18 @@ public class Principal {
 		 * y cada ContraintViolation posee el nombre del atributo y el mensaje de 
 		 * error de la validacion
 		 */
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionfactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
 
 			Cliente cliente = new Cliente();
-			cliente.setNombre("Ju");
+			cliente.setNombre("Juan");
 			cliente.setSaldo(100D);
 			cliente.setApellido("dc");
 			cliente.setCuit("0-0-0");
 			cliente.setFechaAlta(new Date());
-			cliente.setNombreUsuario("fsdfs");
+			cliente.setNombreUsuario("pepe");
 			Long id = (Long) session.save(cliente);
 			System.out.println("Id generado " + id);
 
@@ -48,7 +48,7 @@ public class Principal {
 			transaction.rollback();
 		}
 		session.close();
-		HibernateUtil.getSessionFactory().close();
+		HibernateUtil.getSessionfactory().close();
 	}
 
 }

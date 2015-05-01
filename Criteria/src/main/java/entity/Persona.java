@@ -11,20 +11,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-//esta anotacion es para decirle que se va a persistir
 @Entity
 public class Persona {
 	private Long id;
 	private String name;
 	private Long sueldo;
 	private Direccion direccion;
-	private List<Telefono> telefonos= new ArrayList<Telefono>();
-	private List<Auto> autos= new ArrayList<Auto>();
-	
+	private List<Telefono> telefonos = new ArrayList<Telefono>();
+	private List<Auto> autos = new ArrayList<Auto>();
 
-	// establece que va a ser mi primary key
 	@Id
-	// es la forma en la que quiero que me genere el id
 	@GeneratedValue
 	public Long getId() {
 		return id;
@@ -49,19 +45,18 @@ public class Persona {
 	public void setSueldo(Long sueldo) {
 		this.sueldo = sueldo;
 	}
-	
+
 	@ManyToOne
 	public Direccion getDireccion() {
 		return direccion;
 	}
-	
+
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 
 	@OneToMany
-	//con el join evito la tabla intermedia y guarda el id de la persona por ejemplo
-	@JoinColumn(name="id_persona")
+	@JoinColumn(name = "id_persona")
 	public List<Telefono> getTelefonos() {
 		return telefonos;
 	}
@@ -69,7 +64,7 @@ public class Persona {
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}
-	
+
 	@ManyToMany
 	public List<Auto> getAutos() {
 		return autos;
@@ -78,5 +73,5 @@ public class Persona {
 	public void setAutos(List<Auto> autos) {
 		this.autos = autos;
 	}
-	
+
 }

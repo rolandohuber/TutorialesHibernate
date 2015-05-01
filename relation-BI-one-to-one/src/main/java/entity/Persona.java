@@ -15,8 +15,8 @@ public class Persona implements Serializable {
 	public static final String TELEFONO_ATTRIBUTE="telefono";
 	
 	private Long id;
-	private String lastName;
-	private String dni;
+	private String nombre;
+	private String documento;
 	private Telefono telefono;
 
 	public Persona() {
@@ -32,20 +32,20 @@ public class Persona implements Serializable {
 		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDocumento() {
+		return documento;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 	@OneToOne(fetch=FetchType.LAZY,orphanRemoval=true)
 	/**

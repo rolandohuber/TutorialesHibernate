@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Curso {
 
+	public static final String ESTUDIANTES_ATTRIBUTE = "estudiantes";
 	private Long id;
 	private String nombre;
 	private Set<Estudiante> estudiantes;
@@ -38,7 +39,7 @@ public class Curso {
 		this.nombre = nombre;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Estudiante.class,mappedBy="cursos")
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Estudiante.class, mappedBy = Estudiante.CURSOS_ATTRIBUTE)
 	/**
 	 * @ManyToMany: con este tag le indicamos a hibernate que la relacion va a ser muchos a muchos, por defecto genera dos tablas de relaciones,una
 	 * 				 viendola desde estudiante y la otra viendola desde curso

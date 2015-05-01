@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -46,7 +45,7 @@ public class Casa {
 		this.altura = altura;
 	}
 
-	@OneToMany(targetEntity = Persona.class, mappedBy = "casa")
+	@OneToMany(targetEntity = Persona.class, mappedBy = Persona.CASA_ATTRIBUTE)
 	public Set<Persona> getPersonas() {
 		return personas;
 	}
@@ -55,8 +54,8 @@ public class Casa {
 		this.personas = personas;
 	}
 
-	public void addPersona(Persona p) {
-		this.personas.add(p);
+	public void addPersona(Persona persona) {
+		this.personas.add(persona);
 	}
 
 }

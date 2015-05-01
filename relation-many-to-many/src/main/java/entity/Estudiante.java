@@ -3,7 +3,6 @@ package entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +13,8 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Estudiante {
+	public static final String CURSOS_ATTRIBUTE = "cursos";
+
 	private Long id;
 	private String name;
 	private Set<Curso> cursos;
@@ -56,9 +57,7 @@ public class Estudiante {
 	 * 		targetEntity: es para indicarle la entidad de destino.
 	 * 
 	 */
-	@JoinTable(name = "estudiante_curso", 
-				joinColumns = { @JoinColumn(name = "estudiante_id") }, 
-								inverseJoinColumns = { @JoinColumn(name = "curso_id") })
+	@JoinTable(name = "estudiante_curso", joinColumns = { @JoinColumn(name = "estudiante_id") }, inverseJoinColumns = { @JoinColumn(name = "curso_id") })
 	public Set<Curso> getCursos() {
 		return cursos;
 	}

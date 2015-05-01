@@ -13,13 +13,10 @@ public class UsuarioValidator implements ConstraintValidator<ValidaUsuario, Stri
 	public boolean isValid(String valor, ConstraintValidatorContext context) {
 		// TODO Auto-generated method stub
 		System.out.println("Validando el usuario: " + valor);
-
 		if (valor == null)
 			return true;
-
 		if (valor.equals("pepe"))
 			return false;
-
 		return false;
 	}
 

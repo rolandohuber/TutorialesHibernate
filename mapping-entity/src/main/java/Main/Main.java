@@ -17,15 +17,15 @@ public class Main {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Persona pe = new Persona();
-		pe.setName("Juan");
-		pe.setDni("126464546");
-		pe.setTelefone(1154737572);
-		pe.setTransientValue("Im transient");
-		pe.setFecha_nacim(new Date());
-		pe.setExample(Example.ONE);
+		Persona persona = new Persona();
+		persona.setNombre("Juan");
+		persona.setDocumento("126464546");
+		persona.setTelefono(1154737572);
+		persona.setTransientValue("Im transient");
+		persona.setFechaNacimiento(new Date());
+		persona.setExample(Example.ONE);
 
-		session.save(pe);
+		session.save(persona);
 
 		transaction.commit();
 		session.close();
