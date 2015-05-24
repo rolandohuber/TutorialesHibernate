@@ -12,13 +12,14 @@
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<!-- property name="format_sql">true</property> <property name="use_sql_comments">true</property -->
-		
+
 		<!-- org.hibernate.search.store.FSDirectoryProvider -->
 		<!-- org.hibernate.search.store.RAMDirectoryProvider -->
 		<property name="hibernate.search.default.directory_provider">filesystem</property>
 		<property name="hibernate.search.default.indexBase">indexes</property>
 
-		<mapping class="com.rolando.entity.Cliente" />
+		<mapping class="com.rolando.entity.Curso" />
+		<mapping class="com.rolando.entity.Estudiante" />
 	</session-factory>
 
 </hibernate-configuration>
