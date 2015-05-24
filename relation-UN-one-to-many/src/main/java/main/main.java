@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,35 +12,33 @@ public class main {
 
 	public static void main(String[] args) {
 
-		SessionFactory sessionFactory = HibernateSessionFactory.getSessionfactory();
+		SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		/*
-		 * En la relacion bidireccional los dos objetos relacionados se conocen
-		 */
-		Telefono telefono = new Telefono();
-		telefono.setNumero(1154737572);
-		telefono.setOperador("Claro");
 
-		session.save(telefono);
+		Telefono telefono1 = new Telefono();
+		telefono1.setNumero(1154737572);
+		telefono1.setOperador("Claro");
+		
+		Telefono telefono2 = new Telefono();
+		telefono2.setNumero(117572);
+		telefono2.setOperador("Claro");
+
+		session.save(telefono1);
+		session.save(telefono2);
 
 		Persona persona = new Persona();
 		persona.setDocumento("315165161");
 		persona.setNombre("huber");
-		persona.setTelefono(telefono);
-
-		telefono.setPersona(persona);
+		persona.addTelefono(telefono1);
+		persona.addTelefono(telefono2);
 
 		session.save(persona);
-		session.update(telefono);
 
 		Persona persona2 = (Persona) session.load(Persona.class, 1L);
 		System.out.println("NOMBRE :: " + persona2.getNombre());
 
-		System.out.println("TELEFONO ::: " + persona2.getTelefono().getNumero());
-
-		Telefono telefono2 = (Telefono) session.load(Telefono.class, 1L);
-		System.out.println("PROPIETARIO TELEFONO ::: " + telefono2.getPersona().getNombre());
+		System.out.println("TELEFONO ::: " + persona2.getTelefonos().size());
 
 		transaction.commit();
 		session.close();

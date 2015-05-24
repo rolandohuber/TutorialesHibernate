@@ -23,7 +23,7 @@ public class Principal {
 		 * y cada ContraintViolation posee el nombre del atributo y el mensaje de 
 		 * error de la validacion
 		 */
-		Session session = HibernateUtil.getSessionfactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -48,7 +48,7 @@ public class Principal {
 			transaction.rollback();
 		}
 		session.close();
-		HibernateUtil.getSessionfactory().close();
+		HibernateUtil.getSessionFactory().close();
 	}
 
 }

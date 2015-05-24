@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.util.Iterator;
 
@@ -14,7 +14,7 @@ public class main {
 
 	public static void main(String[] args) {
 
-		SessionFactory sessionFactory = HibernateSessionFactory.getSessionfactory();
+		SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 

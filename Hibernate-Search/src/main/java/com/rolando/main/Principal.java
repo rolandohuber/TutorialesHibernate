@@ -19,7 +19,7 @@ public class Principal {
 	public static void main(String[] args) {
 
 		{ // CREA LA BD
-			SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 
@@ -82,7 +82,7 @@ public class Principal {
 
 		{
 			try {
-				SessionFactory sessionFactory = HibernateUtil.getSessionfactory();
+				SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 				Session session = sessionFactory.openSession();
 				FullTextSession fullTextSession = Search.getFullTextSession(session);
 				fullTextSession.createIndexer().startAndWait();
@@ -91,7 +91,7 @@ public class Principal {
 				e.printStackTrace();
 			}
 		}
-		Session session = HibernateUtil.getSessionfactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		QueryBuilder qb = null;
 		FullTextSession fullTextSession = null;
 		org.apache.lucene.search.Query query = null;
@@ -190,6 +190,6 @@ public class Principal {
 			}
 		}
 		fullTextSession.close();
-		HibernateUtil.getSessionfactory().close();
+		HibernateUtil.getSessionFactory().close();
 	}
 }

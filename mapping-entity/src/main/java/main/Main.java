@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import entity.Persona.Example;
 public class Main {
 
 	public static void main(String[] args) {
-		SessionFactory sessionFactory = HibernateSessionFactory.getSessionfactory();
+		SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 

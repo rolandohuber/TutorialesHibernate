@@ -29,7 +29,7 @@ public abstract class EntityRepository<T extends Serializable> {
 	private Class<?> genericClass;
 
 	public EntityRepository(Class<?> genericClass) {
-		sessionFactory = HibernateSessionFactory.getSessionfactory();
+		sessionFactory = HibernateSessionFactory.getSessionFactory();
 		this.genericClass = genericClass;
 	}
 

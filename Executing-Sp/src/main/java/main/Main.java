@@ -14,7 +14,7 @@ import util.HibernateSessionFactory;
 public class Main {
 
 	public static void main(String[] args) {
-		SessionFactory sessionFactory = HibernateSessionFactory.getSessionfactory();
+		SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
