@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
@@ -18,7 +19,7 @@ import org.hibernate.search.annotations.Store;
 
 @Entity
 /*
- * @Indexed con esta anotation le digo que va a ser un objeto indexable
+ * @Indexed con esta anotacion le digo que va a ser un objeto indexable
  */
 @Indexed
 public class Curso {
@@ -27,12 +28,13 @@ public class Curso {
 	public static final String NAME_ATTRIBUTE = "nombre";
 	public static final String DESCRIPCION_ATTRIBUTE = "descripcion";
 	public static final String PRIORIDAD_ATTRIBUTE = "prioridad";
-	public static final String DATE_ATTRIBUTE = "date";
+	public static final String FECHA_CREACION_ATTRIBUTE = "fechaCreacion";
+	
 	private Long id;
 	private String nombre;
 	private String descripcion;
 	private Integer prioridad;
-	private Date date;
+	private Date fechaCreacion;
 	private Set<Estudiante> estudiantes;
 
 	public Curso() {
@@ -50,11 +52,12 @@ public class Curso {
 	}
 
 	/*
-	 * @Field: 
-	 * 		index: 
-	 * 		store:
+	 * @Field: con esto se le indica que el campo sera indexado y se podra buscar en el
+	 * 		index: YES con esto se asegura que el texto sera indexado
+	 * 		store: NO le decimos que no va a guardar los valores en el indice,
+	 * 		analize: YES con esto excluye palabras comunes como a,la,etc
 	 */
-	@Field(index = Index.YES, store = Store.NO)
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
 	public String getNombre() {
 		return nombre;
 	}
@@ -63,7 +66,7 @@ public class Curso {
 		this.nombre = nombre;
 	}
 
-	@Field(index = Index.YES, store = Store.NO)
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -72,7 +75,7 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
-	@Field(index = Index.YES, store = Store.NO)
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
 	public Integer getPrioridad() {
 		return prioridad;
 	}
@@ -81,17 +84,17 @@ public class Curso {
 		this.prioridad = prioridad;
 	}
 
-	@Field(index = Index.YES, store = Store.NO)
-	public Date getDate() {
-		return date;
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
+	public Date getFechaCreacion() {
+		return fechaCreacion;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setFechaCreacion(Date date) {
+		this.fechaCreacion = date;
 	}
 
 	/*
-	 * @ContainedIn :
+	 * @ContainedIn : se utiliza esta anotacion para indicar que es una lista para que lo reconozca el indexador
 	 */
 	@ContainedIn
 	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Estudiante.class, mappedBy = Estudiante.CURSOS_ATTRIBUTE)

@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
@@ -19,15 +20,18 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 
 @Entity
+/*
+ * @Indexed con esta anotation le digo que va a ser un objeto indexable
+ */
 @Indexed
 public class Estudiante {
 	public static final String CURSOS_ATTRIBUTE = "cursos";
-	public static final String NAME_ATTRIBUTE = "name";
-	public static final String LASTNAME_ATTRIBUTE = "lastname";
+	public static final String NOMBRE_ATTRIBUTE = "nombre";
+	public static final String APELLIDO_ATTRIBUTE = "apellido";
 
 	private Long id;
-	private String name;
-	private String lastname;
+	private String nombre;
+	private String apellido;
 	private Set<Curso> cursos;
 
 	public Estudiante() {
@@ -44,28 +48,34 @@ public class Estudiante {
 		this.id = id;
 	}
 
-	@Field(index = Index.YES, store = Store.NO)
-	public String getName() {
-		return name;
+	/*
+	 * @Field: con esto se le indica que el campo sera indexado y se podra buscar en el
+	 * 		index: YES con esto se asegura que el texto sera indexado
+	 * 		store: NO le decimos que no va a guardar los valores en el indice,
+	 * 		analize: YES con esto excluye palabras comunes como a,la,etc
+	 */
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	@Field(index = Index.YES, store = Store.NO)
-	public String getLastname() {
-		return lastname;
+	@Field(index = Index.YES, store = Store.NO,analyze=Analyze.YES)
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Curso.class)
 	/*
-	 *@ContainedIn:
-	 *@IndexedEmbedded
+	 *@ContainedIn : se utiliza esta anotacion para indicar que es una lista para que lo reconozca el indexador
+	 *@IndexedEmbedded: con esto le decimos a hibernate-search que tiene una entidad asociada
 	 * */
 	@ContainedIn
 	@IndexedEmbedded

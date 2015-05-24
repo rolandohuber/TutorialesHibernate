@@ -15,7 +15,7 @@ import com.rolando.entity.Estudiante;
 import com.rolando.util.HibernateUtil;
 
 public class Principal {
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public static void main(String[] args) {
 
 		{ // CREA LA BD
@@ -24,29 +24,29 @@ public class Principal {
 			Transaction transaction = session.beginTransaction();
 
 			Estudiante estudiante1 = new Estudiante();
-			estudiante1.setName("Estudiante 1");
+			estudiante1.setNombre("Estudiante 1");
 			session.save(estudiante1);
 
 			Estudiante estudiante2 = new Estudiante();
-			estudiante2.setName("Estudiante 2");
-			estudiante2.setLastname("apellido2");
+			estudiante2.setNombre("Estudiante 2");
+			estudiante2.setApellido("apellido2");
 			session.save(estudiante2);
 
 			Curso curso = new Curso();
 			curso.setPrioridad(1);
-			curso.setDate(new Date(2015, 05, 23));
+			curso.setFechaCreacion(new Date(2015, 05, 23));
 			curso.setNombre("Programacion I");
 			session.save(curso);
 
 			Curso curso4 = new Curso();
 			curso4.setPrioridad(4);
-			curso4.setDate(new Date(2015, 05, 22));
+			curso4.setFechaCreacion(new Date(2015, 05, 22));
 			curso4.setNombre("IIII");
 			session.save(curso4);
 
 			Curso curso3 = new Curso();
 			curso3.setPrioridad(3);
-			curso3.setDate(new Date(2015, 05, 21));
+			curso3.setFechaCreacion(new Date(2015, 05, 21));
 			curso3.setNombre("III");
 			session.save(curso3);
 
@@ -66,7 +66,7 @@ public class Principal {
 
 			Curso curso2 = new Curso();
 			curso2.setPrioridad(2);
-			curso2.setDate(new Date(2015, 05, 24));
+			curso2.setFechaCreacion(new Date(2015, 05, 24));
 			curso2.setNombre("Programacion II");
 			curso2.setDescripcion("es una descripcion de prueba");
 			curso2.addEstudiante(estudiante1);
@@ -105,22 +105,22 @@ public class Principal {
 			fullTextSession = Search.getFullTextSession(session);
 			qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Estudiante.class).get();
 			System.out.println("Busqueda sobre un atributo en particular ------------------------------------------------");
-			query = qb.keyword().onFields(Estudiante.NAME_ATTRIBUTE).matching("Estudiante").createQuery();
+			query = qb.keyword().onFields(Estudiante.NOMBRE_ATTRIBUTE).matching("Estudiante").createQuery();
 			hibQuery = fullTextSession.createFullTextQuery(query, Estudiante.class);
 			List<Estudiante> result = hibQuery.list();
 			for (Estudiante c : result) {
-				System.out.println(c.getName());
+				System.out.println(c.getNombre());
 			}
 		}
 		{
 			fullTextSession = Search.getFullTextSession(session);
 			qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Estudiante.class).get();
 			System.out.println("Busqueda sobre mas de un atributo ------------------------------------------------");
-			query = qb.keyword().onFields(Estudiante.NAME_ATTRIBUTE, Estudiante.LASTNAME_ATTRIBUTE).matching("Estudiante").createQuery();
+			query = qb.keyword().onFields(Estudiante.NOMBRE_ATTRIBUTE, Estudiante.APELLIDO_ATTRIBUTE).matching("Estudiante").createQuery();
 			hibQuery = fullTextSession.createFullTextQuery(query, Estudiante.class);
 			List<Estudiante> result = hibQuery.list();
 			for (Estudiante c : result) {
-				System.out.println(c.getName());
+				System.out.println(c.getNombre());
 			}
 		}
 
@@ -137,11 +137,11 @@ public class Principal {
 		{
 			System.out.println("Busca por contenido en la palabra seria equivalente al like *texto* en sql------------------------------------------------");
 			qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Estudiante.class).get();
-			query = qb.keyword().wildcard().onField(Estudiante.NAME_ATTRIBUTE).matching("*studi*").createQuery();
+			query = qb.keyword().wildcard().onField(Estudiante.NOMBRE_ATTRIBUTE).matching("*studi*").createQuery();
 			hibQuery = fullTextSession.createFullTextQuery(query, Estudiante.class);
 			List<Estudiante> result = hibQuery.list();
 			for (Estudiante c : result) {
-				System.out.println(c.getName());
+				System.out.println(c.getNombre());
 			}
 		}
 		{
@@ -168,7 +168,7 @@ public class Principal {
 			System.out.println("Busca por rango en un campo tipo fecha------------------------------------------------");
 			qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Curso.class).get();
 			// hasta tal fecha
-			query = qb.range().onField(Curso.DATE_ATTRIBUTE).below(new Date(2015, 05, 22)).excludeLimit().createQuery();
+			query = qb.range().onField(Curso.FECHA_CREACION_ATTRIBUTE).below(new Date(2015, 05, 22)).excludeLimit().createQuery();
 			// desde tal fecha
 			// query = qb.range().onField(Curso.DATE_ATTRIBUTE).above(new
 			// Date(2015, 05, 22)).excludeLimit().createQuery();
@@ -186,7 +186,7 @@ public class Principal {
 
 			List<Estudiante> result3 = hibQuery.list();
 			for (Estudiante o : result3) {
-				System.out.println(o.getName());
+				System.out.println(o.getNombre());
 			}
 		}
 		fullTextSession.close();
